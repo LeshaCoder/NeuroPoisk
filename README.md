@@ -6,7 +6,7 @@
 
 ## Быстрый старт
 
-1. Запусти `NeuroPoiskov.exe`
+1. Запусти `NeuroPoisk.exe`
 2. Нажми **«Файл»** или **«Папка»** и выбери документ
 3. Дождись надписи **«Файл прочитан и готов к работе»**
 4. Введи вопрос и нажми **«Спросить»** или **Ctrl+Enter**
@@ -60,7 +60,7 @@ pip install customtkinter piragi sentence-transformers pymupdf python-docx chard
 
 **Сборка:**
 ```bash
-pyinstaller --onefile --windowed --name "NeuroPoiskov" --icon "icon.ico" --add-data "icon.ico;." --hidden-import=chardet --hidden-import=ebooklib --hidden-import=bs4 --hidden-import=lxml --hidden-import=fitz --hidden-import=docx --hidden-import=sentence_transformers --hidden-import=piragi --hidden-import=customtkinter --collect-all customtkinter --collect-all sentence_transformers --collect-all piragi neuropoisk_app1.py
+pyinstaller --onefile --windowed --name "NeuroPoisk" --icon "icon.ico" --add-data "icon.ico;." --hidden-import=chardet --hidden-import=ebooklib --hidden-import=bs4 --hidden-import=lxml --hidden-import=fitz --hidden-import=docx --hidden-import=sentence_transformers --hidden-import=piragi --hidden-import=customtkinter --collect-all customtkinter --collect-all sentence_transformers --collect-all piragi neuropoisk_app.py
 ```
 
 Готовый `.exe` появится в папке `dist\`.
