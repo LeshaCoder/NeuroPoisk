@@ -51,7 +51,7 @@ python neuropoisk_app.py
 ### Сборка `.exe` самостоятельно
 
 ```bash
-pyinstaller --onefile --windowed --name "NeuroPoiskov" --icon "icon.ico" --add-data "icon.ico;." --hidden-import=chardet --hidden-import=ebooklib --hidden-import=bs4 --hidden-import=lxml --hidden-import=fitz --hidden-import=docx --hidden-import=sentence_transformers --hidden-import=piragi --hidden-import=customtkinter --collect-all customtkinter --collect-all sentence_transformers --collect-all piragi neuropoisk_app.py
+pyinstaller --onefile --windowed --name "NeuroPoisk" --icon "icon.ico" --add-data "icon.ico;." --hidden-import=chardet --hidden-import=ebooklib --hidden-import=bs4 --hidden-import=lxml --hidden-import=fitz --hidden-import=docx --hidden-import=sentence_transformers --hidden-import=piragi --hidden-import=customtkinter --collect-all customtkinter --collect-all sentence_transformers --collect-all piragi neuropoisk_app.py
 ```
 
 ---
