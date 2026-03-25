@@ -366,6 +366,8 @@ OPENROUTER_API_KEYS = [
     "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",
     "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",
     "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",
+    "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",
+    "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",
 ]
 
 _models_cache      = []
@@ -907,7 +909,7 @@ class App(ctk.CTk):
     def _run_ask(self, q):
         self._busy = True
         self.ask_btn.configure(text="Думаю...")
-        self._set_ans("⏳ Ищу ответ...", MUTED)
+        self._set_ans("Думаю...", MUTED)
         threading.Thread(target=self._ask_w, args=(q,), daemon=True).start()
 
     def _ask_w(self, q):
@@ -927,7 +929,7 @@ class App(ctk.CTk):
         self.status_lbl.configure(text=t, text_color=c)
 
     def _set_ans(self, text, color):
-        text = text.replace("/n", "\n")
+        text = text.replace("\\n", "\n").replace("\\r\\n", "\n")
         t = self.ans_box
         t.config(state="normal")
         t.delete("1.0", "end")
