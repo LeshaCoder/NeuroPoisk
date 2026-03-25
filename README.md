@@ -136,7 +136,7 @@ pyinstaller --onefile --windowed --name "NeuroPoisk" --icon "icon.ico" --add-dat
 высшей цели. Убийство старухи-процентщицы было для него
 проверкой: способен ли он на поступок или он «тварь дрожащая».
 
-📎  Источники:
+Источники:
   • «Тварь ли я дрожащая или право имею...»  [prestuplenie_i_nakazanie.txt]
   • «...я хотел Наполеоном сделаться, оттого и убил...»  [prestuplenie_i_nakazanie.txt]
   • «Я не старуху убил — я себя убил...»  [prestuplenie_i_nakazanie.txt]
