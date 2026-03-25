@@ -572,22 +572,23 @@ except ImportError:
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("dark-blue")
 
-BG     = "#0A0D16"
-SURF   = "#141824"
-SURF2  = "#1C2130"
-GOLD   = "#D4A843"
-GOLDD  = "#A07828"
-CREAM  = "#E8E0D0"
+BG     = "#fff"
+SURF   = "#f7f7f7"
+SURF2  = "#00a2ff"
+GOLD   = "#00a2ff"
+GOLDD  = "#00a2ff"
+CREAM  = "black"
 MUTED  = "#6B7280"
 GREEN  = "#4ADE80"
 RED    = "#F87171"
-BORDER = "#2A3040"
+BORDER = "#00a2ff"
+BLUE = "#116cf5"
 
 F_TITLE = ("Segoe UI", 22, "bold")
 F_LABEL = ("Segoe UI", 11, "bold")
-F_BTN   = ("Segoe UI", 13, "bold")
-F_MONO  = ("Consolas", 12)
-F_SMALL = ("Segoe UI", 11)
+F_BTN   = ("Segoe UI", 15, "bold")
+F_MONO  = ("Consolas", 15 , "bold")
+F_SMALL = ("Segoe UI", 13)
 F_ANS   = ("Segoe UI", 13)
 F_BOLD  = ("Segoe UI", 13, "bold")
 
@@ -691,7 +692,7 @@ class App(ctk.CTk):
     def _build(self):
         hdr = ctk.CTkFrame(self, fg_color="transparent")
         hdr.pack(fill="x", padx=32, pady=(20, 0))
-        ctk.CTkLabel(hdr, text="🧠  НейроПоиск", font=F_TITLE, text_color=CREAM).pack(anchor="w")
+        ctk.CTkLabel(hdr, text="НейроПоиск", font=F_TITLE, text_color=BLUE).pack(anchor="w")
         ctk.CTkFrame(self, height=1, fg_color=GOLDD).pack(fill="x", padx=32, pady=(10, 0))
 
         scroll = ctk.CTkScrollableFrame(
@@ -706,18 +707,18 @@ class App(ctk.CTk):
             lambda e: scroll._parent_canvas.yview_scroll(int(-e.delta / 120) * 16, "units")
         )
 
-        ctk.CTkLabel(scroll, text="ДОКУМЕНТ", font=F_LABEL, text_color=GOLD, anchor="w").pack(fill="x")
+        ctk.CTkLabel(scroll, text="ДОКУМЕНТ", font=F_LABEL, text_color="white", anchor="w").pack(fill="x")
         btn_row = ctk.CTkFrame(scroll, fg_color="transparent")
         btn_row.pack(fill="x", pady=(6, 0))
         ctk.CTkButton(
-            btn_row, text="📁 Папка", font=F_MONO, height=44,
-            fg_color=SURF2, hover_color="#222840", text_color=CREAM,
+            btn_row, text="Папка", font=F_MONO, height=44,
+            fg_color=SURF2, hover_color="#4dbeff", text_color="white",
             border_color=BORDER, border_width=1, corner_radius=8,
             command=self._pick_folder,
         ).pack(side="left", padx=(0, 8))
         ctk.CTkButton(
-            btn_row, text="📄 Файл", font=F_MONO, height=44,
-            fg_color=SURF2, hover_color="#222840", text_color=CREAM,
+            btn_row, text="Файл", font=F_MONO, height=44,
+            fg_color=SURF2, hover_color="#4dbeff", text_color="white",
             border_color=BORDER, border_width=1, corner_radius=8,
             command=self._pick_file,
         ).pack(side="left")
@@ -755,11 +756,11 @@ class App(ctk.CTk):
         self.q_box.bind("<Control-Return>", lambda e: self._ask())
 
         ctk.CTkLabel(scroll, text="Ctrl+Enter — отправить", font=F_SMALL,
-                     text_color=MUTED, anchor="e").pack(fill="x", pady=(2, 0))
+                     text_color="black", anchor="e").pack(fill="x", pady=(2, 0))
 
         self.ask_btn = ctk.CTkButton(
             scroll, text="Спросить  →", font=F_BTN, height=50,
-            fg_color=GOLD, hover_color="#B8962A", text_color="#0A0D16",
+            fg_color=GOLD, hover_color=GOLD, text_color="#fff",
             corner_radius=8, command=self._ask,
         )
         self.ask_btn.pack(fill="x", pady=(8, 0))
@@ -768,13 +769,13 @@ class App(ctk.CTk):
         ans_row.pack(fill="x", pady=(16, 0))
         ctk.CTkLabel(ans_row, text="ОТВЕТ", font=F_LABEL, text_color=GOLD, anchor="w").pack(side="left")
         ctk.CTkButton(
-            ans_row, text="⎘ Копировать", font=F_SMALL,
-            fg_color="transparent", hover_color=SURF2,
-            text_color=MUTED, border_width=0, height=24, width=120,
+            ans_row, text="Копировать", font=F_SMALL,
+            fg_color=GOLD, hover_color=SURF2,
+            text_color="white", border_width=0, height=24, width=120,
             command=self._copy,
         ).pack(side="right")
         self._ans_frame, self.ans_box = _textbox(scroll, height=14, readonly=True, scroll_parent=scroll)
-        self._ans_frame.pack(fill="both", expand=True, pady=(6, 6))
+        self._ans_frame.pack(fill="both", expand=True, pady=(10, 10))
         self.ans_box.tag_configure("bold", font=F_BOLD, foreground=CREAM)
 
     def _pick_folder(self):
@@ -905,7 +906,7 @@ class App(ctk.CTk):
 
     def _run_ask(self, q):
         self._busy = True
-        self.ask_btn.configure(text="⏳ думаю...")
+        self.ask_btn.configure(text="Думаю...")
         self._set_ans("⏳ Ищу ответ...", MUTED)
         threading.Thread(target=self._ask_w, args=(q,), daemon=True).start()
 
@@ -926,6 +927,7 @@ class App(ctk.CTk):
         self.status_lbl.configure(text=t, text_color=c)
 
     def _set_ans(self, text, color):
+        text = text.replace("/n", "\n")
         t = self.ans_box
         t.config(state="normal")
         t.delete("1.0", "end")
