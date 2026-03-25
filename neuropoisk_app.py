@@ -569,7 +569,7 @@ try:
 except ImportError:
     sys.exit(1)
 
-ctk.set_appearance_mode("dark")
+ctk.set_appearance_mode("light")
 ctk.set_default_color_theme("dark-blue")
 
 BG     = "#fff"
